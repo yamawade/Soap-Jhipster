@@ -329,6 +329,16 @@
             <artifactId>testcontainers</artifactId>
             <scope>test</scope>
         </dependency>
+      <!-- DEPENDANCE SOAP-->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web-services</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>wsdl4j</groupId>
+        <artifactId>wsdl4j</artifactId>
+      </dependency>
+
     </dependencies>
 
     <build>
@@ -409,6 +419,27 @@
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
             </plugin>
+          <!-- PLUGIN SOAP-->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>jaxb2-maven-plugin</artifactId>
+            <version>3.3.0</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>xjc</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <sources>
+                <schemaDirectory>${project.basedir}/src/main/resources/schema</schemaDirectory>
+              </sources>
+                <!--${project.basedir} indique la racine du projet-->
+              <packageName>com.groupeisi.m2gl</packageName>
+              <clearOutputDir>false</clearOutputDir>
+            </configuration>
+          </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
