@@ -45,8 +45,7 @@ public class BanqueEndpoint {
     @ResponsePayload
     public SoldeResponse getSolde(@RequestPayload GetSoldeRequest request) {
         SoldeResponse response = new SoldeResponse();
-        // Ici tu peux récupérer le solde depuis ta base ou un service
-        response.setSolde(100000L); // valeur simulée
+        response.setSolde(100000);
         return response;
     }
 

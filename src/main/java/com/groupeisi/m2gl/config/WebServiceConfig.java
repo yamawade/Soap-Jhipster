@@ -16,14 +16,6 @@ import org.springframework.xml.xsd.XsdSchema;
 @Configuration
 public class WebServiceConfig {
 
-    @Bean
-    public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext) {
-        MessageDispatcherServlet servlet = new MessageDispatcherServlet();
-        servlet.setApplicationContext(applicationContext);
-        servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean<>(servlet, "/ws/*");
-    }
-
     @Bean(name = "schema")
     public XsdSchema banqueSchema() {
         return new SimpleXsdSchema(new ClassPathResource("schema/schema.xsd"));
@@ -37,5 +29,13 @@ public class WebServiceConfig {
         wsdl11Definition.setTargetNamespace("http://www.groupeisi.com/banque");
         wsdl11Definition.setSchema(banqueSchema);
         return wsdl11Definition;
+    }
+
+    @Bean
+    public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext) {
+        MessageDispatcherServlet servlet = new MessageDispatcherServlet();
+        servlet.setApplicationContext(applicationContext);
+        servlet.setTransformWsdlLocations(true);
+        return new ServletRegistrationBean<>(servlet, "/ws/*");
     }
 }
